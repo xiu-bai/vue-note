@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板语法</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- vue中有两种数据绑定的方式 -->
+    <div id="root">
+        单项数据绑定：<input type="text" :value="name">
+        <br>
+        双相数据绑定：<input type="text" v-model:value="name">
+
+        <!-- 如下代码是错误的，因为v-model只能应用在表单类元素（输入类元素）上 -->
+        <h2 v-model:x="name">修白</h2>
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                name:'修白'
+            }
+        });
+    </script>
+</body>
+
+</html>
