@@ -71,5 +71,30 @@ B站尚硅谷张天禹前端Vue2.0-Vue3.0学习笔记
      - 双相绑定一半都应用在表单类元素上（如：input、select等）
      - v-model:value 可以简写为 v-model，因为v-model默认收集的就是value值。
 
-#### 4.el与data的两种写法
+#### 4.el与data的2种写法
+
+ 	1. el有2种写法
+     - new Vue时候配置el属性。
+     - 先创建Vue实例，随后再通过vm.$mount('#root')指定el的值。
+	2. data有2种写法
+    - 对象式
+    - 函数式
+      - 如何选择：目前哪种写法都可以，以后学习到组件时，data必须使用函数式，否则会报错。
+	3. 一个重要的原则：
+    - 由Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例了。
+
+#### 5.理解MVVM模型
+
+1. M：模型(Model)：对应data中的数据
+2. V：视图(View)：模板
+3. VM：视图模型(ViewModel)：Vue实例对象
+
+[![p9NFPyR.jpg](README.assets/p9NFPyR.jpg)](https://imgse.com/i/p9NFPyR)
+
+观察发现：
+
+	1. data中所有的属性，最后都出现在vm身上。
+ 	2. vm身上所有的属性 及Vue原型上所有的属性，在Vue模板中都可以直接使用。
+
+#### 6.数据代理
 

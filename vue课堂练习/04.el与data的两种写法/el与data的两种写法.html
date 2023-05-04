@@ -10,6 +10,19 @@
 </head>
 
 <body>
+    <!-- 
+        data与el的2种写法
+         	1. el有2种写法
+                - new Vue时候配置el属性。
+                - 先创建Vue实例，随后再通过vm.$mount('#root')指定el的值。
+            2. data有2种写法
+                - 对象式
+                - 函数式
+                    - 如何选择：目前哪种写法都可以，以后学习到组件时，data必须使用函数式，否则会报错。
+            3. 一个重要的原则：
+                - 由Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例了。
+
+     -->
     <div id="root">
         <h1>你好，{{name}}</h1>
     </div>
@@ -31,7 +44,8 @@
             }*/
 
             // data的第二种写的：函数式
-            data:function(){
+            data(){
+                console.log('@@@',this)//此处的this是Vue实例
                 return{
                     name:'修白'
                 }
