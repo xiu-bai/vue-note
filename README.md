@@ -141,7 +141,7 @@ console.log(obj2);
 
 3. Vue中的数据代理
 
-[![p9UNcY8.png](README.assets/p9UNcY8.png)](https://imgse.com/i/p9UNcY8)
+[![p9UNcY8.md.png](README.assets/p9UNcY8.md.png)](https://imgse.com/i/p9UNcY8)
 
 - Vue中的数据代理：通过vm对象来代理data对象中的属性的操作（读/写）
 - Vue中数据代理的好处：更加方便的操作data中的数据
