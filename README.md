@@ -98,3 +98,20 @@ B站尚硅谷张天禹前端Vue2.0-Vue3.0学习笔记
 
 #### 6.数据代理
 
+数据代理：通过一个对象代理对另一个对象中属性的操作（读/写）
+
+```
+//例：
+let obj = {x:100}
+let obj2 = {y:200}
+Object.defineProperty(obj2,'x',{
+    get(){
+    	return obj.x
+    },
+    set(value){
+    	obj.x=value
+    }
+})
+console.log(obj2);
+```
+
