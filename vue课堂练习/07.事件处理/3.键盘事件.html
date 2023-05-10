@@ -9,11 +9,32 @@
 </head>
 
 <body>
+    <!-- 
+        1. Vue中常用的案件别名：
+            - 回车 => enter
+            - 删除 => delete（捕获“删除”和“退格”键）
+            - 退出 => esc
+            - 空格 => space
+            - 换行 => tab  (特殊，必须配合@keyDown使用)
+            - 上 => up
+            - 下 => down
+            - 左 => left
+            - 右 => right
+        2. Vue未提供别名的案件，可以使用案件原始的key值去绑定，但注意要转为kebab-case（短横线命名）
+        3. 系统修饰键（用法特殊）：ctrl、alt、shift、meta(win)
+            - 配合keyup使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才会被触发。
+            - 配合keyDown使用：正常出发事件。
+            - 组合键使用：.系统修饰符.按键名，例：.ctrl.y。
+        4. 也可以使用keyCode去指定具体的按键（不推荐）
+        5. Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名
+     -->
     <div id="root">
         <h2>欢迎{{name}}来学习</h2>
-        <input type="text" name="" id="" placeholder="按下回车提示输入" @keyup="showInfo">
+        <input type="text" name="" id="" placeholder="按下回车提示输入" @keyup.enter="showInfo">
     </div>
     <script>
+        // 自定义键名 
+        Vue.config.keyCodes.huice = 13;
         new Vue({
             el:'#root',
             data:{
@@ -21,8 +42,9 @@
             },
             methods:{
                 showInfo(e){
-                    // console.log(e.keyCode);
-                    if(e.keyCode !== 13) return;
+                    // console.log(e.key);//按键名字
+                    // console.log(e.keyCode);//按键编码
+                    // if(e.keyCode !== 13) return; // @keyup.enter
                     console.log(e.target.value);
                 },
             }

@@ -169,5 +169,25 @@ console.log(obj2);
 5. self：只有event.target是当前操作的元素时才触发事件；
 6. passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
 
+
+- 修饰符可以连着写。例：@click.stop.prevent
+
 ##### 3.键盘事件
 
+1. Vue中常用的案件别名：
+   - 回车 => enter
+   - 删除 => delete（捕获“删除”和“退格”键）
+   - 退出 => esc
+   - 空格 => space
+   - 换行 => tab (特殊，必须配合@keyDown使用)
+   - 上 => up
+   - 下 => down
+   - 左 => left
+   - 右 => right
+2. Vue未提供别名的案件，可以使用案件原始的key值去绑定，但注意要转为kebab-case（短横线命名）
+3. 系统修饰键（用法特殊）：ctrl、alt、shift、meta(win)
+   - 配合keyup使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才会被触发。
+   - 配合keyDown使用：正常出发事件。
+   - 组合键使用：.系统修饰符.按键名，例：.ctrl.y。
+4. 也可以使用keyCode去指定具体的按键（不推荐）
+5. Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名。
