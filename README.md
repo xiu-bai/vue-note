@@ -191,3 +191,39 @@ console.log(obj2);
    - 组合键使用：.系统修饰符.按键名，例：.ctrl.y。
 4. 也可以使用keyCode去指定具体的按键（不推荐）
 5. Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名。
+
+#### 7.计算属性与监视
+
+##### 1.计算属性-computed
+
+1. 定义：要用的属性不存在，要通过已有属性计算得来。
+2. 原理：底层借助了`Object.defineproperty`方法提供的`getter`和`setter`。
+3. get函数什么时候执行？
+   - 初次读取时会执行一次。
+   - 当依赖的数据发生改变时会被再次调用。
+4. 优势：与`methods`实现相比，内部有缓存机制（复用），效率高，调试方便。
+5. 备注：
+   - 计算属性最终会出现在vm上，直接读取使用即可。
+   - 如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖的数据发生改变。
+
+```vue
+例：
+computed:{
+    // 完整写法
+    fullName:{
+        get(){
+            return this.firstName + '-' +this.lastName
+        },
+        set(value){
+            const arr = value.split('-');
+            this.firstName = arr[0];
+            this.lastName = arr[1];
+        }
+    }
+    // 简写
+    fullName(){
+        return this.firstName + '-' +this.lastName
+    }
+}
+```
+
