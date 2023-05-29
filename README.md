@@ -152,7 +152,7 @@ console.log(obj2);
 
 #### 6.事件处理
 
-##### 1.事件的基本使用
+##### 6.1. 事件的基本使用
 
 1. 使用v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名；
 2. 事件的回调需要配置在**methods**对象中，最终会在vm上；
@@ -160,7 +160,7 @@ console.log(obj2);
 4. methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；
 5. @click=“demo” 和 @clik=“demo($event)” 效果一致，但后者可以传参数；
 
-##### 2.Vue中的事件修饰符
+##### 6.2. Vue中的事件修饰符
 
 1. **prevent**： 阻止默认事件（常用）；
 2. **stop**：阻止事件冒泡（常用）；
@@ -172,7 +172,7 @@ console.log(obj2);
 
 - 修饰符可以连着写。例：@click.stop.prevent
 
-##### 3.键盘事件
+##### 6.3. 键盘事件
 
 1. Vue中常用的案件别名：
    - 回车 => enter
@@ -194,7 +194,7 @@ console.log(obj2);
 
 #### 7.计算属性与监视
 
-##### 1.计算属性-computed
+##### 7.1. 计算属性-computed
 
 1. 定义：要用的属性不存在，要通过已有属性计算得来。
 2. 原理：底层借助了`Object.defineproperty`方法提供的`getter`和`setter`。
