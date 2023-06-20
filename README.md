@@ -14,31 +14,31 @@ B站尚硅谷张天禹前端Vue2.0-Vue3.0学习笔记
 
 ## 一.Vue基础
 
-#### 1.Vue简介
+### 1.Vue简介
 
-##### 1.1 Vue是什么？
+#### 1.1 Vue是什么？
 
 一套用于构建用户界面的**渐进式**javaScript框架
 
 [^渐进式]: Vue可以自底向上逐层的应用。简单应用：只需一个轻量小巧的核心库。复杂应用：可以引入各式各样的Vue插件库
 
-##### 1.2 谁开发的？
+#### 1.2 谁开发的？
 
 尤雨溪。2013:seed-Vue0.6。2014:Vue0.8。 2015.10.27:Vue1.0.0。2016.10.1:Vue2.0.0。2020.09.18:Vue3.0.0。
 
-##### 1.3 Vue优点
+#### 1.3 Vue优点
 
 - 采用**组件化**模式，提高代码复用率、让代码更好维护。
 - **声明式**编码，让编码人员无需直接操作DOM，提高开发效率。
 - 使用**虚拟DOM**+优秀的**Diff算法**，尽可能复用DOM节点。
 
-##### 1.4 学习Vue之前需要掌握的JavaScript基础知识？
+#### 1.4 学习Vue之前需要掌握的JavaScript基础知识？
 
 1.ES6语法规范，2.ES6模块化，3.原型、原型链，4.数组常用方法，5.axios，6.promise，等...
 
 [Vue官网](https://cn.vuejs.org/)
 
-#### 2.初始Vue
+### 2.初始Vue
 
 - 想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象；
 - el容器里面的代码依然符合html规范，只不过混入了一些特殊的Vue语法；
@@ -48,7 +48,7 @@ B站尚硅谷张天禹前端Vue2.0-Vue3.0学习笔记
 -  {{xxx}}中的xxx要写js表达式，且xxx可以自动读取到Data中的所有属性；
 - 一旦data中的数据发生改变，那么模板中用到该数据的地方也会自动更新；
 
-#### 3.模板语法
+### 3.模板语法
 
 1. 插值语法：
    - 功能：用于解析标签体内容。
@@ -58,7 +58,7 @@ B站尚硅谷张天禹前端Vue2.0-Vue3.0学习笔记
    - 举例：v-bind:href="xxx" 或 简写为 :href="xxx", xxx同样要写js表达式，且可以直接读取到data中的所有属性。
    - 备注：Vue中有很多的指令，且形式都是：v-???,此处拿v-bind举例。
 
-#### 4.数据绑定
+### 4.数据绑定
 
 ​	vue中有2种数据绑定的方式：
 
@@ -79,7 +79,7 @@ B站尚硅谷张天禹前端Vue2.0-Vue3.0学习笔记
 3. 一个重要的原则：
    - 由Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例了。
 
-#### 5.理解MVVM模型
+### 5.理解MVVM模型
 
 1. M：模型(Model)：对应data中的数据
 2. V：视图(View)：模板
@@ -150,9 +150,9 @@ console.log(obj2);
   - 为每一个添加到vm上的属性，都指定一个getter/setter。
   - 在getter/setter内部去操作（读/写）data中对应的属性。
 
-#### 6.事件处理
+### 6.事件处理
 
-##### 6.1. 事件的基本使用
+#### 6.1. 事件的基本使用
 
 1. 使用v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名；
 2. 事件的回调需要配置在**methods**对象中，最终会在vm上；
@@ -160,7 +160,7 @@ console.log(obj2);
 4. methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；
 5. @click=“demo” 和 @clik=“demo($event)” 效果一致，但后者可以传参数；
 
-##### 6.2. Vue中的事件修饰符
+#### 6.2. Vue中的事件修饰符
 
 1. **prevent**： 阻止默认事件（常用）；
 2. **stop**：阻止事件冒泡（常用）；
@@ -172,7 +172,7 @@ console.log(obj2);
 
 - 修饰符可以连着写。例：@click.stop.prevent
 
-##### 6.3. 键盘事件
+#### 6.3. 键盘事件
 
 1. Vue中常用的案件别名：
    - 回车 => enter
@@ -192,9 +192,9 @@ console.log(obj2);
 4. 也可以使用keyCode去指定具体的按键（不推荐）
 5. Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名。
 
-#### 7.计算属性与监视
+### 7.计算属性与监视
 
-##### 7.1. 计算属性-computed
+#### 7.1. 计算属性-computed
 
 1. 定义：要用的属性不存在，要通过已有属性计算得来。
 2. 原理：底层借助了`Object.defineproperty`方法提供的`getter`和`setter`。
@@ -227,7 +227,7 @@ computed:{
 }
 ```
 
-##### 7.2. 监视属性-watch
+#### 7.2. 监视属性-watch
 
 1. 当被监视的属性发生变化时，回调函数自动调用，进行相关操作
 2. 监视的属性必须存在，才能进行监视！！！
@@ -245,7 +245,7 @@ computed:{
 1. Vue自身可以检测对象内部值的改变，但Vue提供的watch默认不可以！
 2. 使用watch时根据数据的具体结构，决定是否采用深度监视。
 
-##### 7.3. computed和watch之间的区别：
+#### 7.3. computed和watch之间的区别：
 
 1. `computed`能完成的功能，watch都可以完成。
 2. watch能完成的功能，`computed`不一定能完成，例如：`watch`可以进行异步操作。
@@ -253,4 +253,88 @@ computed:{
 两个重要的小原则：
 
 1. 所被Vue管理的函数，最好写成普通函数，这样的this的指向才是**vm** 或 **组件实例对象**。
-2. 所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数等），最好写成箭头函数，这样this的指向才是**vm** 或者 **组件实例对象**。
+2. 所有不被Vue所管理的函数（定时器的回调函数、**ajax**的回调函数等,**Promise**的回调函数），最好写成箭头函数，这样this的指向才是**vm** 或者 **组件实例对象**。
+
+### 8.绑定样式
+
+##### 1.绑定class样式
+
+- 写法： class="xxx" xxx可以是字符串、对象、数组。
+  - 字符串写法适用于：类名不确定，要动态获取。
+  - 对象写法适用于：要绑定多个样式，个数不确定，名字也不确定。
+  - 数组写法适用于：要绑定多个样式，个数确定，名字也确定，但不确定用不用。
+
+```vue
+<!-- 绑定class样式 -- 字符串写法，适用于:样式的类名不确定，需要动态指定 -->
+<div class="basic" :class="mood" @click="changeMood" :style="">{{name}}</div>
+<br/>
+<!-- 绑定class样式 -- 数组写法，适用于：要绑定的样式个数不确定、名字也不确定 -->
+<div class="basic" :class="arr">{{name}}</div>
+<br/>
+<!-- 绑定class样式 -- 对象写法，适用于：要绑定的样式个数确定，名字也确定，但要动态决定用不用 -->
+<div class="basic" :class="classObj">{{name}}</div>
+<br/>
+<div class="basic" :class="{atguigu1:true,atguigu2:false}">{{name}}</div>
+
+data:{
+    name: '修白',
+    mood:'noormal',
+    arr:['atguigu1','atguigu2','atguigu3'],
+    classObj:{
+        atguigu1:false,
+        atguigu2:false
+    }
+},
+methods:{
+    changeMood(){
+        const arr = ['happy','sad','normal']
+        const index = Math.floor(Math.random()*3)
+        this.mood = arr[index]
+    }
+}
+```
+
+##### 2.绑定style样式
+
+- :style="{fontSize:xxx}" 其中xxx是动态值。
+- :style="[a,b]" 其中a、b是样式对象。
+
+```vue
+<!-- 绑定style样式 对象写法 -->
+<div class="basic" :style="styleObj">{{name}}</div>
+<!-- 绑定style样式 数组写法 -->
+<div class="basic" :style="[styleObj,styleObj2]">{{name}}</div>
+
+data:{
+    styleObj:{
+    	fontSize:'40px'
+    },
+    styleObj2:{
+    	backgroundColor:'red'
+    }
+},
+```
+
+### 9.条件渲染
+
+###### 1.v-if 写法：
+
+1. v-if="表达式"
+2. v-else-if="表达式"
+3. v-else="表达式"
+
+适用于：切换频率较低的场景
+
+特点：不展示的DOM袁术直接被移除
+
+注意：v-if可以和v-else-if、v-else一起使用，但要求结构不能被“打断”。
+
+###### 2.v-show
+
+写法：v-show="表达式"
+
+适用于：切换频率较高的场景
+
+特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+
+###### 3.备注：使用v-if时，元素可能无法获取到，而使用v-show一定可以获取到。
