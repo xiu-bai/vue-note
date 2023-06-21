@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名称</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>人员列表（遍历数组）</h2>
+        <input type="text" placeholder="请输入名字" v-model="keyWord" >
+        <ul>
+            <li v-for="(p,index) in filPerson" :key="index">{{p.name}}-{{p.age}}-{{p.sex}}</li>
+        </ul>
+    </div>
+    <script>
+        // 用watch实现
+        //#region
+        /*new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                persons:[
+                    {id:'001',name:'马冬梅',age:18,sex:'女'},
+                    {id:'002',name:'周冬雨',age:19,sex:'女'},
+                    {id:'003',name:'周杰伦',age:20,sex:'男'},
+                    {id:'003',name:'温兆伦',age:20,sex:'男'}
+                ],
+                filPerson:[]
+            },
+            watch:{
+                keyWord:{
+                    immediate:true,
+                    handler(val){
+                        this.filPerson=this.persons.filter((item) => {
+                            return item.name.indexOf(val) != -1
+                        })
+                    }
+                }
+            },
+        });*/
+        //#endregion
+        // 用computend实现
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                persons:[
+                    {id:'001',name:'马冬梅',age:18,sex:'女'},
+                    {id:'002',name:'周冬雨',age:19,sex:'女'},
+                    {id:'003',name:'周杰伦',age:20,sex:'男'},
+                    {id:'003',name:'温兆伦',age:20,sex:'男'}
+                ],
+                filPerson:[]
+            },
+            watch:{
+                keyWord:{
+                    immediate:true,
+                    handler(val){
+                        this.filPerson=this.persons.filter((item) => {
+                            return item.name.indexOf(val) != -1
+                        })
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
