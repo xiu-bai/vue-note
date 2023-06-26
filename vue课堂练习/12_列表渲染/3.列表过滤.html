@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>名称</title>
+    <title>3.列表过滤</title>
     <script src="../js/vue.js"></script>
 </head>
 
@@ -14,7 +14,7 @@
         <h2>人员列表（遍历数组）</h2>
         <input type="text" placeholder="请输入名字" v-model="keyWord" >
         <ul>
-            <li v-for="(p,index) in filPerson" :key="index">{{p.name}}-{{p.age}}-{{p.sex}}</li>
+            <li v-for="(p,index) in filPerons" :key="index">{{p.name}}-{{p.age}}-{{p.sex}}</li>
         </ul>
     </div>
     <script>
@@ -30,13 +30,13 @@
                     {id:'003',name:'周杰伦',age:20,sex:'男'},
                     {id:'003',name:'温兆伦',age:20,sex:'男'}
                 ],
-                filPerson:[]
+                filPerons:[]
             },
             watch:{
                 keyWord:{
                     immediate:true,
                     handler(val){
-                        this.filPerson=this.persons.filter((item) => {
+                        this.filPerons=this.persons.filter((item) => {
                             return item.name.indexOf(val) != -1
                         })
                     }
@@ -55,16 +55,12 @@
                     {id:'003',name:'周杰伦',age:20,sex:'男'},
                     {id:'003',name:'温兆伦',age:20,sex:'男'}
                 ],
-                filPerson:[]
             },
-            watch:{
-                keyWord:{
-                    immediate:true,
-                    handler(val){
-                        this.filPerson=this.persons.filter((item) => {
-                            return item.name.indexOf(val) != -1
-                        })
-                    }
+            computed:{
+                filPerons(){
+                    return this.persons.filter((p) =>{
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
                 }
             },
         });
