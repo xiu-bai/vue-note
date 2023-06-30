@@ -378,3 +378,20 @@ data:{
 [![pCG9C01.png](README.assets/pCG9C01.png)](https://imgse.com/i/pCG9C01)
 
 [![pCG9Fk6.png](README.assets/pCG9Fk6.png)](https://imgse.com/i/pCG9Fk6)
+
+#### 10.1. Vue监视原理：
+
+1. Vue会监视data中所有层次的数据。
+2. 如何检测对象中的数据？**通过setter实现监视，且要在new Vue时就传入要检测的数据**。
+   - 对象中后追加的属性，Vue默认不做响应式处理
+   - 如需给后添加的属性做响应式，请使用如下API：
+     - `Vue.set(target, propertyName/index, value)`
+     - `vm.$set(target, propertyName/index, value)`
+3. 如何监测数组中的数据？**通过包裹数组更新元素方法实现，本质就是做了两件事：**
+   - 调用原生对应的方法对数组进行更新。
+   - 重新解析模板，进而更新页面。
+4. 在Vue修改数组中的某个元素一定要用如下方法：
+   - 使用这些API：`push()`、`pop()`、`shift()`、`unshift()`、`splice()`、`sort()`、`reverse()`
+   - `Vue.set()` 或 `vm.set()`
+
+**特别注意**：Vue.set() 和 vm.set()  不能给vm 或 vm的根数据对象   添加属性！！！
