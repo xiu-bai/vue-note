@@ -35,6 +35,7 @@
         <button @click="updataFirstName">修改第一个朋友的名字为：张三</button><br>
         <button @click="addHobby">添加一个爱好</button><br>
         <button @click="updataHobby">修改第一个爱好为：开车</button><br>
+        <button @click="removeSmoke">过滤掉爱好中的：抽烟</button><br>
         
         <h1>学生信息</h1>
         <h2>姓名：{{student.name}}</h2>
@@ -87,6 +88,11 @@
                     // this.student.hobby.splice(0,1,'开车')
                     // Vue.set(this.student.hobby,0,'开车')
                     this.$set(this.student.hobby,0,'开车')
+                },
+                removeSmoke(){
+                    this.student.hobby = this.student.hobby.filter((h)=>{
+                        return h != '抽烟'
+                    })
                 }
             }
         });
