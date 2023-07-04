@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.v-clock_指令</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        `v-clock`指令：
+            1. 本质是一个特殊属性，Vue实例创建完毕并接管容器后，会删掉v-clock属性。
+            2. 使用css配合v-clock可以解决网速慢时页面展示出{{xxx}}的问题。
+    -->
+    <div id="root">
+        <h2 v-clock>欢迎{{name}}来学习</h2>
+    </div>
+    <!-- <script src="加载很慢的js"></script> -->
+</body>
+
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            name: '修白',
+        },
+        methods:{
+
+        }
+    });
+</script>
+</html>
