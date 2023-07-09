@@ -504,12 +504,19 @@ Vue.directives(指令名,配置对象)  或  Vue.directives(指令名,回调函�
 
 ###### vm的一生（vm的生命周期）：
 ​	将要创建 =》 调用`beforeCreate`函数。
+
 ​	创建完毕 =》 调用`created`函数。
+
 ​	将要挂载 =》 调用`beforeMount`函数。
+
 ​	**挂载完毕** =》 调用`mounted`函数。 ==【重要的钩子】
+
 ​	将要更新 =》 调用`beforeUpdate`函数。
+
 ​	更新完毕 =》 调用`updated`函数。
+
 ​	**将要销毁** =》 调用`beforeDestroy`函数。 ==【重要的钩子】
+
 ​	销毁完毕 =》 调用`destroyed`函数。
 
 常用的生命周期钩子：
