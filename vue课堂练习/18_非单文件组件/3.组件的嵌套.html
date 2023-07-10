@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.组件的嵌套</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+     -->
+    <div id="root">
+        <h2>欢迎{{name}}来学习</h2>
+        <app></app>
+    </div>
+</body>
+<script>
+    // 定义student组件
+    const student = Vue.extend({
+        template: `
+            <div>
+              <h2>学生名字:{{ studentName }}</h2>
+              <h2>学生年龄:{{ age }}</h2>
+            </div>
+        `,
+        data() {
+            return {
+                studentName: '修白',
+                age: 18
+            }
+        },
+    })
+    // 定义school组件
+    const school = Vue.extend({
+        template: `
+          <div>
+            <h2>学校名称:{{ name }}</h2>
+            <h2>学校地址:{{ address }}</h2>
+            <!--子组件注册给哪个父组件，就嵌套在哪个父组件里面--->
+             <student></student>
+          </div>
+        `,
+        data() {
+            return {
+                name: '北京大学',
+                address: '北京'
+            }
+        },
+        // 注册组件（局部组件）
+        components: {
+            student
+        },
+    });
+
+    const hello = Vue.extend({
+        template: `<h1>{{ msg }}</h1>`,
+        data() {
+            return {
+                msg: 'hello, 修白',
+            }
+        },
+    });
+
+    const app = Vue.extend({
+        template: `<div>
+            <school></school>
+            <hello></hello>
+          </div>`,
+        components: {
+            school,
+            hello
+        }
+    });
+
+    new Vue({
+        el: '#root',
+        template: `<app></app>`,
+        data: {
+            name: '修白'
+        },
+        components: {
+            // //schoo组件与hello组件平级
+            // school,
+            // hello
+            app,
+        },
+        methods: {
+
+        }
+    });
+</script>
+
+</html>

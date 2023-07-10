@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.VueComponent</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        关于VueComponent：
+        1. school组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，是Vue.extend生成的。
+        2. 我们只需要写`<school/>`或`<school></school>`，Vue解析时会帮我们创建school组件的实例对象，即Vue帮我们执行的：`new VueComponent(options)`。
+        3. **特别注意**：每次调用`Vue.extend`，返回的都是一个全新的`VueComponent`！！！！注意这一点很**重要**
+        4. 关于this指向：
+        - 组件配置中：data函数、methods中的函数、watch中的函数、computed中的函数 它们的this均是【VueComponent实例对象】。
+        - new Vue(options)配置中：data函数、methods中的函数、watch中的函数、computed中的函数 它们的this均是【Vue实例对象】。
+        5. VueComponent的实例对象，以后简称vc（也可称之为：组件实例对象）。Vue的实例对象，以后简称vm。
+        6. 因为组件是可复用的 Vue 实例，所以它们与 new Vue 接收相同的选项，例如 data、computed、watch、methods 以及生命周期钩子等。仅有的例外是像 el 这样根实例特有的选项。所以vm与vc属性配置并不是一模一样，尽管vc底层复用了很多vm的逻辑
+     -->
+    <div id="root">
+        <h2>欢迎{{name}}来学习</h2>
+        <school></school>
+        <hello></hello>
+    </div>
+</body>
+<script>
+    // 定义school组件
+    const school = Vue.extend({
+        template: `
+          <div>
+            <h2>学校名称:{{ name }}</h2>
+            <h2>学校地址:{{ address }}</h2>
+            <button @click="showname">点我提示学校名</button>
+          </div>
+        `,
+        data() {
+            return {
+                name: '北京大学',
+                address: '北京'
+            }
+        },
+        methods: {
+            showname() {
+                console.log(this);
+                alert(this.name);
+            }
+        }
+    });
+
+    //测试组件
+    const test = Vue.extend({
+        template: `<h1>修白</h1>`
+    });
+
+    const hello = Vue.extend({
+        template: `
+          <div>
+          <h1>{{ msg }}</h1>
+          <test></test>
+        </div>`,
+        data() {
+            return {
+                msg: 'hello, 修白',
+            }
+        },
+        components: {
+            test
+        }
+    });
+
+
+    new Vue({
+        el: '#root',
+        data: {
+            name: '修白'
+        },
+        methods: {
+
+        },
+        components: {
+            school, hello
+        }
+    });
+</script>
+
+</html>
