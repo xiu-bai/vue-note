@@ -3,9 +3,9 @@
 
 ## 学习顺序
 
-1. ✔️[vue基础](./1.Vue基础/Vue基础.md)
-2. 🚩vue-cli
-3. vue-router
+1. ✔️[Vue基础](./1.Vue基础/Vue基础.md)
+2. 🚩[Vue-cli](./2.Vue-cli/Vue-cli.md)
+3. Vue-router
 4. vuex
 5. element-ui
-6. vue3
+6. Vue3
