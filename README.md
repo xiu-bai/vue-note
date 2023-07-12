@@ -632,5 +632,12 @@ Vue.directives(指令名,配置对象)  或  Vue.directives(指令名,回调函�
 
    所以vm与vc属性配置并不是一模一样，尽管vc底层复用了很多vm的逻辑
 
+#### 15.5. 一个重要的内置关系
+
+1. 一个重要的内置关系：`VueComponent.prototype.__proto__ === Vue.prototype`
+2. 为什么要有这个关系：让组件实例对象（vc）可以访问到 Vue原型上的属性、方法。
+
+**实例的隐式原型属性永远指向自己缔造者的原型对象**
+
 [![pC20htO.png](README.assets/pC20htO.png)](https://imgse.com/i/pC20htO)
 
