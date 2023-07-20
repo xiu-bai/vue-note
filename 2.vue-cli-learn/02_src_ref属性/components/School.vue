@@ -13,8 +13,8 @@ export default {
     },
     data() {
         return {
-            address: '武汉',
-            name: '武汉科技大学'
+            address: '北京',
+            name: '北京大学'
         }
     },
     mounted() {
