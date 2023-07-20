@@ -59,12 +59,12 @@
 
    -  第三种方式（限制类型、限制必要性、指定默认值）： 
 
-     ```
+     ```vue
      props:{
      	name:{
-     	type:String, //类型
-     	required:true, //必要性
-     	default:'老王' //默认值
+             type:String, //类型
+             required:true, //必要性
+             default:'老王' //默认值
      	}
      }
      ```
@@ -79,7 +79,7 @@
 
    -  第一步定义混合： 
 
-     ```
+     ```js
      {
          data(){....},
          methods:{....}
