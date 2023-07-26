@@ -1,0 +1,35 @@
+<template>
+  <div class="student">
+    <h2>姓名:{{ name }}</h2>
+    <h2>性别: {{ sex }}</h2>
+    <button @click="sendStudentName">把学生名给school组件</button>
+  </div>
+</template>
+ 
+<script>
+export default {
+  name: "Student",
+  data() {
+    return {
+      name: '修白',
+      sex: '男',
+    }
+  },
+  mounted() {
+    // console.log(this.x); 
+    //vc.__proto__ === VueComponent.protoType VueComponent.protoType.__proto__ === Vue.prototype
+  },
+  methods: {
+    sendStudentName(){
+      this.$bus.$emit('hellow',666)//销毁解绑
+    }
+  }
+}
+</script>
+<style scoped>
+.student {
+  background: rgb(96, 53, 255);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+</style>
