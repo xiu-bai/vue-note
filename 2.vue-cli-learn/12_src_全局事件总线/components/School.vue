@@ -22,7 +22,7 @@ export default {
   methods:{
   },
   beforeDestroy() {
-    this.$bus.$off('hellow')
+    this.$bus.$off('hellow')//销毁解绑
   },
 }
 </script>

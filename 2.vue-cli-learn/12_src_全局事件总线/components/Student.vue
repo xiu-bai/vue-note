@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     sendStudentName(){
-      this.$bus.$emit('hellow',666)//销毁解绑
+      this.$bus.$emit('hellow',666)
     }
   }
 }
