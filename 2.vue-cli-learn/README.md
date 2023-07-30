@@ -352,3 +352,11 @@ module.exports = {
 1. 优点：可以配置多个代理，且可以灵活的控制请求是否走代理。
 2. 缺点：配置略微繁琐，请求资源时必须加前缀。
 
+## axios与vue-resource
+
+axios：通用的Ajax请求库，官方推荐，使用广泛
+
+vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">官方已不维护</span>
+
+
+
