@@ -57,9 +57,9 @@
 
    -  第二种方式（限制类型）： ` props:{name:String} `
 
-   -  第三种方式（限制类型、限制必要性、指定默认值）： 
-
-     ```vue
+   - 第三种方式（限制类型、限制必要性、指定默认值）： 
+   
+     ```
      props:{
      	name:{
              type:String, //类型
@@ -250,8 +250,8 @@
 
    - 引入: `import pubsub from 'pubsub-js'`
 
-   -  接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<span style="color:red;">回调留在A组件自身</span>。 
-
+   - 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<span style="color:red;">回调留在A组件自身</span>。 
+   
      ```
      methods(){
        demo(data){......}
@@ -292,14 +292,14 @@
        2. v-leave-active：离开过程中
        3. v-leave-to：离开的终点
 
-   -  使用` <transition> `包裹要过度的元素，并配置name属性,注意如果配置了appear属性的话就代表一开始挂载真实dom的时候就开启动画的效果： 
-
+   - 使用` <transition> `包裹要过度的元素，并配置name属性,注意如果配置了appear属性的话就代表一开始挂载真实dom的时候就开启动画的效果： 
+   
      ```
      <transition name="hello" appear>
-     	<h1 v-show="isShow">你好啊！</h1>
+       <h1 v-show="isShow">你好啊！</h1>
      </transition>
      ```
-   - 备注：若有多个元素需要过度，则需要使用：`<transition-group>`，且每个元素都要指定`key`值。
+- 备注：若有多个元素需要过度，则需要使用：`<transition-group>`，且每个元素都要指定`key`值。
 
 ## vue脚手架配置代理
 
@@ -366,24 +366,23 @@ vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">�
 
 3.  使用方式： 
 
-   -  默认插槽： 
-
+   - 默认插槽： 
+   
      ```
      父组件中：
              <Category>
-                <div>html结构1</div>
+                 <div>html结构1</div>
              </Category>
      子组件中：
              <template>
                  <div>
-                    <!-- 定义插槽 -->
-                    <slot>插槽默认内容...</slot>
+                     <!-- 定义插槽 -->
+                     <slot>插槽默认内容...</slot>
                  </div>
              </template>
      ```
-
-   -  具名插槽： 
-
+   - 具名插槽： 
+   
      ```
      父组件中：
              <Category>
@@ -392,25 +391,24 @@ vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">�
                  </template>
      
                  <template v-slot:footer>
-                    <div>html结构2</div>
+                     <div>html结构2</div>
                  </template>
              </Category>
      子组件中：
              <template>
                  <div>
-                    <!-- 定义插槽 -->
-                    <slot name="center">插槽默认内容...</slot>
-                    <slot name="footer">插槽默认内容...</slot>
+                     <!-- 定义插槽 -->
+                     <slot name="center">插槽默认内容...</slot>
+                     <slot name="footer">插槽默认内容...</slot>
                  </div>
-             </template>
+          </template>
      ```
-
-   -  作用域插槽： 
-
-     - 理解：数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
-
-     -  具体编码： 
-
+-  作用域插槽： 
+   
+  - 理解：数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
+   
+  -  具体编码： 
+   
        ```
        父组件中：
        		<Category>
