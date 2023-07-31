@@ -157,15 +157,15 @@
 
 3.  相关API： 
 
-   -  ` xxxxxStorage.setItem('key', 'value'); `
+   -  ` xxxxxStorage.setItem('key', 'value') `;
 
-     该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值。 
+     该方法接受一个键和值作为参数，会把键值对添加到储存中，如果键名存在，则更新其对应的值。 
 
-   - ` xxxxxStorage.getItem('person'); ` 
+   - ` xxxxxStorage.getItem('person') ` ;
 
      该方法接受一个键名作为参数，返回键名对应的值。 
 
-   - ` xxxxxStorage.removeItem('key'); `
+   - ` xxxxxStorage.removeItem('key') `;
 
       该方法接受一个键名作为参数，并把该键名从存储中删除。 
 
