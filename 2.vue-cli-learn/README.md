@@ -546,3 +546,80 @@ vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">�
 3.  组件中修改vuex中的数据：`$store.dispatch('action中的方法名',数据)` 或 `$store.commit('mutations中的方法名',数据)` 
 
    > 备注：若没有网络请求或其他业务逻辑，组件中也可以越过actions，即不写`dispatch`，直接编写`commit` 
+
+### 5.getters的使用
+
+1. 概念：当state中的数据需要经过加工后再使用时，可以使用getters加工。
+
+2.  在`store.js`中追加`getters`配置 
+
+   ```
+   ......
+   
+   const getters = {
+       bigSum(state){
+           return state.sum * 10
+       }
+   }
+   
+   //创建并暴露store
+   export default new Vuex.Store({
+       ......
+       getters
+   })
+   ```
+
+3. 组件中读取数据：`$store.getters.bigSum`
+
+### 6.四个map方法的使用
+
+1.  **mapState方法：**用于帮助我们映射`state`中的数据为计算属性 
+
+   ```vue
+   computed: {
+       //借助mapState生成计算属性：sum、school、subject（对象写法）
+        ...mapState({sum:'sum',school:'school',subject:'subject'}),
+            
+       //借助mapState生成计算属性：sum、school、subject（数组写法）
+       ...mapState(['sum','school','subject']),
+   },
+   ```
+
+2.  **mapGetters方法：**用于帮助我们映射`getters`中的数据为计算属性 
+
+   ```vue
+   computed: {
+       //借助mapGetters生成计算属性：bigSum（对象写法）
+       ...mapGetters({bigSum:'bigSum'}),
+   
+       //借助mapGetters生成计算属性：bigSum（数组写法）
+       ...mapGetters(['bigSum'])
+   },
+   ```
+
+3. **mapMutations方法：**用于帮助我们生成与`mutations`对话的方法，即：包含`$store.commit(xxx)`的函数 
+
+   ```vue
+   methods:{
+       //靠mapMutations生成：increment、decrement（对象形式）
+       ...mapMutations({increment:'JIA',decrement:'JIAN'}),
+       
+       //靠mapMutations生成：JIA、JIAN（对象形式）
+       ...mapMutations(['JIA','JIAN']),
+   }
+   ```
+
+4.  **mapActions方法：**用于帮助我们生成与`mutations`对话的方法，即：包含`$store.disoatch(xxx)`的函数 
+
+   ```vue
+   methods:{
+       //靠mapActions生成：increment、decrement（对象形式）
+       ...mapActions({incrementOdd:'jiaOdd',incrementWait:'jianWait'}),
+       
+       //靠mapActions生成：JIA、JIAN（对象形式）
+       ...mapActions(['JIA','JIAN']),
+   }
+   ```
+
+>  备注：mapActions与mapMutations使用时，若需要传递参数需要：在模板中绑定事件时传递好参数，否则参数是事件对象。 
+
