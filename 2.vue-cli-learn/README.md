@@ -1007,7 +1007,7 @@ vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">�
 
 2. 分类：全局守卫、独享守卫、组件内守卫
 
-3. 全局守卫:
+3. 全局守卫: 前置守卫`beforeEach`,后置守卫`afterEach`
 
    ```js
    //全局前置守卫：初始化时执行、每次路由切换前执行
@@ -1034,4 +1034,35 @@ vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">�
    	}
    })
    ```
+
+4. 独享守卫: 某一个路由所独享的`beforeEnter`
+
+   ```js
+   beforeEnter(to,from,next){
+   	console.log('beforeEnter',to,from)
+   	if(to.meta.isAuth){ //判断当前路由是否需要进行权限控制
+   		if(localStorage.getItem('school') === 'atguigu'){
+   			next()
+   		}else{
+   			alert('暂无权限查看')
+   			// next({name:'guanyu'})
+   		}
+   	}else{
+   		next()
+   	}
+   }
+   ```
+
+5. 组件内守卫：进入守卫`beforeRouteEnter`,离开守卫`beforeRouteLeave`
+
+   ```js
+   //进入守卫：通过路由规则，进入该组件时被调用
+   beforeRouteEnter (to, from, next) {
+   },
+   //离开守卫：通过路由规则，离开该组件时被调用
+   beforeRouteLeave (to, from, next) {
+   }
+   ```
+
+
 
