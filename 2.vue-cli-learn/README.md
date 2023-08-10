@@ -994,3 +994,9 @@ vue-resource：vu额插件库，vue1.x使用广泛，<span style="color:red;">�
 
 > 如果要缓存多个路由组件就改写为`:include="['News', 'Message']"`
 
+### 11.两个新的生命周期钩子
+
+1. 作用：路由组件所独有的两个钩子，用于捕获路由组件的激活状态。
+2. 具体名字：
+   - `activated`路由组件被激活时触发。
+   - `deactivated`路由组件失活时触发。
