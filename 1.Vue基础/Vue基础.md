@@ -374,7 +374,7 @@ data:{
      - `Vue.set(target, propertyName/index, value)`
      - `vm.$set(target, propertyName/index, value)`
    
-   > 响应式删除属性：`Vue.delete(target, propertyName/index, value)`/`vm.$delete(target, propertyName/index, value)`
+   > 响应式删除属性：`Vue.delete(target, propertyName, value)`/`vm.$delete(target, propertyName, value)`
    
 3. 如何监测数组中的数据？**通过包裹数组更新元素方法实现，本质就是做了两件事：**
    - 调用原生对应的方法对数组进行更新。
