@@ -373,6 +373,9 @@ data:{
    - 如需给后添加的属性做响应式，请使用如下API：
      - `Vue.set(target, propertyName/index, value)`
      - `vm.$set(target, propertyName/index, value)`
+   
+   > 响应式删除属性：`Vue.delete(target, propertyName/index, value)`/`vm.$delete(target, propertyName/index, value)`
+   
 3. 如何监测数组中的数据？**通过包裹数组更新元素方法实现，本质就是做了两件事：**
    - 调用原生对应的方法对数组进行更新。
    - 重新解析模板，进而更新页面。
