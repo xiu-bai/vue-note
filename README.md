@@ -5,5 +5,5 @@
 
 1. ✔️[Vue基础](./1.Vue基础/Vue基础.md)
 2. ✔️[Vue-cli、vue-router、vuex、element-ui](./2.vue-cli-learn/README.md)
-6. 🚩Vue3
+6. ✔️[Vue3](./3.vue3_learn/README.md)
 
