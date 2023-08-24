@@ -127,5 +127,50 @@ npm run lint
    };
    ```
 
-## 
+## 5. 路由设计配置
+
+1. 分析项目页面，设计路由，配置一级路由。但凡是单个页面，独立展示的，都是一级路由
+
+```
+智慧商城
+|——登录
+|——首页架子
+|  |——首页、分类、购物车、我的 == 二级路由
+|——搜索页
+|——搜索列表
+|——商品详情
+|——结算支付
+|——订单管理
+```
+
+2. 阅读vant组件库文档，实现<strong style="color:red;">底部导航 tabbar</strong>
+
+   - vant-ui.js 按需引入
+
+     ```js
+     import {Tabbar,TabbarItem} from 'vant'
+     Vue.use(Tabbar)
+     Vue.use(TabbarItem)
+     ```
+
+   - 在layout.vue页面中粘贴官方代码测试
+
+   - 修改文字、图标、颜色
+
+     ```vue
+     <van-tabbar v-model="active" active-color="#ee0a24" inactive-color="#000">
+         <van-tabbar-item icon="wap-home-o">首页</van-tabbar-item>
+         <van-tabbar-item icon="apps-o">分类</van-tabbar-item>
+         <van-tabbar-item icon="shopping-cart-o">购物车</van-tabbar-item>
+         <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+     </van-tabbar>
+         
+     data() {
+         return {
+           active: 0,
+         };
+     },
+     ```
+
+3. 基于底部导航，完成<strong style="color:red;">二级路由配置</strong>
 
