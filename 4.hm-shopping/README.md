@@ -20,8 +20,7 @@ npm run build
 npm run lint
 ```
 # vue2项目开发
-## 一.初始化项目
-### 1. 创建项目
+## 1. 创建项目
 1. 安装脚手架：`npm install -g vue-cli@版本号`
 2. 创建项目：`vue create 项目名称`
 3. 选择手动配置：`Manually select features`
@@ -43,7 +42,7 @@ npm run lint
        1. 使用 ESLint 官网推荐的规则 + Prettier 第三方的配置
        2. Prettier 主要是做风格统一。代码格式化工具
    - 配置文件 dedicated config files
-### 2. 调整初始化目录
+## 2. 调整初始化目录
 ```
 ├── src
 │   ├── api: 接口
@@ -59,3 +58,74 @@ npm run lint
 3. 新增 两个文件api/utils
    - api接口模块：发送ajax请求的接口模块
    - utils工具模块：自己封装的一些工具方法模块
+
+## 3.安装[Vant](https://vant-contrib.gitee.io/vant/v2/#/zh-CN/)组件库
+
+1. 安装： `npm i vant@latest-v2 -S`
+
+2. 引入组件：
+
+   2.1 方式一：自动按需引入组件（**推荐**）
+
+    [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式。 
+
+   - 安装插件：` npm i babel-plugin-import -D `
+
+   -  在.babelrc 中添加配置 
+
+     ```js
+     module.exports = {
+       plugins: [
+         ['import', {
+           libraryName: 'vant',
+           libraryDirectory: 'es',
+           style: true
+         }, 'vant']
+       ]
+     };
+     // 接着你可以在代码中直接引入 Vant 组件
+     // 插件会自动将代码转化为方式二中的按需引入形式
+     import { Button } from 'vant';
+     ```
+
+     >  Tips: 如果你在使用 TypeScript，可以使用 [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) 实现按需引入。 
+
+   2.2 方式二：手动按需引入组件
+
+   ```js
+   import Button from 'vant/lib/button';
+   import 'vant/lib/button/style';
+   ```
+
+   2.3 方式三：导入所有组件
+
+   ```js
+   import Vant from 'vant';
+   import 'vant/lib/index.css';
+   
+   Vue.use(Vant);
+   ```
+
+   >  Tips: 配置按需引入后，将不允许直接导入所有组件。 
+
+3. 使用方式一提取到vant-ui.js中，在main中导入
+
+## 4.基于[postcss](https://vant-contrib.gitee.io/vant/v2/#/zh-CN/advanced-usage)插件 实现项目vw适配
+
+1. 安装插件：`npm install postcss-px-to-viewport@1.1.1 -D`
+
+2. 在根目录新建postcss.config.js文件，填入配置
+
+   ```js
+   // postcss.config.js
+   module.exports = {
+     plugins: {
+       'postcss-px-to-viewport': {
+         viewportWidth: 375,
+       },
+     },
+   };
+   ```
+
+## 
+
