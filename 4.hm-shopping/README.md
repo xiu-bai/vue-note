@@ -174,3 +174,24 @@ npm run lint
 
 3. 基于底部导航，完成<strong style="color:red;">二级路由配置</strong>
 
+   - 配置二级路由（规则&组件）
+
+   - 配置导航链接
+
+   - 配置路由出口
+
+     ```
+     {
+         path:'/', 
+         component: Layout,
+         redirect:'/home',//重定向
+         children:[
+             {path:'/home', component: Home},
+             {path:'/category', component: Category},
+             {path:'/cart', component: Cart},
+             {path:'/user', component: User},
+         ]
+     },
+     ```
+
+     
