@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getPicCode, getMsgCode } from "@/api/login";
+import { getPicCode, getMsgCode, codeLogin } from "@/api/login";
 export default {
   name: 'loginIndex',
   data() {
@@ -109,7 +109,12 @@ export default {
         return
       }
 
-      
+      const res = await codeLogin(this.mobile, this.msgCode);
+      this.$store.commit('user/setUserInfo',res.data)
+      console.log(res)
+
+      this.$toast('登录成功')
+      this.$router.push('/')
 
     }
 
