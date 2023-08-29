@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@/utils/vant-ui'
+import '@/styles/common.less'
 
 // 全局导入
 // import Vant from 'vant'
