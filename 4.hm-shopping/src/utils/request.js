@@ -9,6 +9,24 @@ const instance = axios.create({
     timeout: 5000,
 });
 
+// 自定义配置 - 请求/响应 拦截器
+// 添加请求拦截器
+instance.interceptors.response.use(function (config) {
+    console.log(config);
+    // 开启loading，禁止背景点击 (节流处理，防止多次无效触发)
+    Toast.loading({
+        message: '加载中...',
+        forbidClick: true, // 禁止背景点击
+        loadingType: 'spinner', // 配置loading图标
+        duration: 0 // 不会自动消失
+    })
+
+    return config
+}),function(error){
+    // 对响应错误做点什么
+    return Promise.reject(error)
+}
+
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
     // 2xx 范围内的状态码都会触发该函数。
