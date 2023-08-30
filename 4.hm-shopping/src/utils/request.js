@@ -12,7 +12,7 @@ const instance = axios.create({
 // 自定义配置 - 请求/响应 拦截器
 // 添加请求拦截器
 instance.interceptors.response.use(function (config) {
-    console.log(config);
+    // console.log(config);
     // 开启loading，禁止背景点击 (节流处理，防止多次无效触发)
     Toast.loading({
         message: '加载中...',
