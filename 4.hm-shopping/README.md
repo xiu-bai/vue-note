@@ -1468,7 +1468,9 @@ export default {
 </template>
 
 <script>
-export default {}
+export default {
+        name:'GoodsItem'
+    }
 </script>
 
 <style lang="less" scoped>
