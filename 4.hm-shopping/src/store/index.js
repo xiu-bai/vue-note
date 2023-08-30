@@ -5,13 +5,10 @@ import user from './modules/user'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
   getters: {
-  },
-  mutations: {
-  },
-  actions: {
+    token(state){
+      return state.user.userInfo.token
+    }
   },
   modules: {
     user
