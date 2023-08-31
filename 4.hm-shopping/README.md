@@ -1835,6 +1835,7 @@ export const setHistoryList = (arr) => {
 2. 页面中调用 - 实现持久化
 
 ```jsx
+import { getHistoryList,setHistoryList } from '@/utils/storage'
 data () {
   return {
     search: '',

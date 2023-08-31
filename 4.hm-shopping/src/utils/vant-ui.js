@@ -1,7 +1,8 @@
 // 按需导入
 import Vue from 'vue'
-import { Search, Swipe, SwipeItem, Grid, GridItem, Button, Switch, Rate, Tabbar, TabbarItem, NavBar, Toast } from 'vant'
+import { Icon,Search, Swipe, SwipeItem, Grid, GridItem, Button, Switch, Rate, Tabbar, TabbarItem, NavBar, Toast } from 'vant'
 
+Vue.use(Icon)
 Vue.use(Button)
 Vue.use(Switch)
 Vue.use(Rate)
