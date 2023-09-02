@@ -1902,7 +1902,7 @@ methods: {
 <script>
 import GoodsItem from '@/components/GoodsItem.vue'
 export default {
-  name: 'SearchIndex',
+  name: 'SearchList',
   components: {
     GoodsItem
   }
