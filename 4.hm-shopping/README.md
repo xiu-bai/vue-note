@@ -1948,7 +1948,7 @@ export default {
 
 
 
-<img src="assets/image-20230621155728973.png" alt="image-20230621155728973" style="zoom:80%;" />
+<img src="README.assets/image-20230621155728973.png" alt="image-20230621155728973" style="zoom:80%;" />
 
 
 
@@ -2015,7 +2015,7 @@ async created () {
 
 ### (2) 分类id搜索
 
-<img src="assets/image-20230624231331980.png" alt="image-20230624231331980" style="zoom:67%;" />
+<img src="README.assets/image-20230624231331980.png" alt="image-20230624231331980" style="zoom:67%;" />
 
 
 
@@ -2184,7 +2184,7 @@ async created () {
 
 ## 31. 商品详情 - 静态布局
 
-<img src="assets/image-20230624233945821.png" alt="image-20230624233945821" style="zoom: 67%;" />
+<img src="README.assets/image-20230624233945821.png" alt="image-20230624233945821" style="zoom: 67%;" />
 
 静态结构 和 样式
 
@@ -2276,7 +2276,7 @@ async created () {
 
 <script>
 export default {
-  name: 'ProDetail',
+  name: 'ProDetailIndex',
   data () {
     return {
       images: [
