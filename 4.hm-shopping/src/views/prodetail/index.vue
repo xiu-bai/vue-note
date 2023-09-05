@@ -103,7 +103,7 @@
         </div>
         <!-- 有库存显示提交按钮 -->
         <div class="showbtn" v-if="detail.stock_total > 0">
-          <div class="btn" v-if="mode === 'cart'">加入购物车</div>
+          <div class="btn" v-if="mode === 'cart'" @click="addCart">加入购物车</div>
           <div class="btn now" v-if="mode === 'buyNow'">立刻购买</div>
         </div>
         <div class="btn-none" v-else>该商品已抢完</div>
@@ -167,6 +167,31 @@ export default {
       this.mode = 'buyNow'
       this.showPannel = true
     },
+    addCart() {
+      // 根据登录状态，判断是否需要显示登录确认框
+      // 1. 如果未登录 => 显示确认框 返回 true
+      // 2. 如果已登录 => 啥也不干   返回 false
+      // 判断 token 是否存在
+      if (!this.$store.getters.token) {
+        // 弹确认框
+        this.$dialog.confirm({
+          title: '温馨提示',
+          message: '此时需要先登录才能继续操作哦',
+          confirmButtonText: '去登陆',
+          cancelButtonText: '再逛逛'
+        }).then(() => {
+          // 如果希望跳转到登录 => 登陆后再回跳回来，需要在跳转去携带参数（当前的路径地址）
+          // this.$route.fullPath(会包含查询参数)
+          this.$router.replace({
+            path: '/login',
+            query: {
+              backUrl: this.$route.fullPath
+            }
+          })
+        }).catch(() => { })
+        return true
+      }
+    }
   }
 }
 </script>
@@ -416,4 +441,5 @@ export default {
     background-color: #ee0a24;
     border-radius: 50%;
   }
-}</style>
+}
+</style>

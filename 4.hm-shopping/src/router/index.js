@@ -57,6 +57,7 @@ router.beforeEach((to, form, next) => {
   if(!authUrls.includes(to.path)){
     // 非权限页面
     next()
+    return
   }
 
   // 权限页面需要token
