@@ -69,7 +69,8 @@
         <van-icon name="wap-home-o" />
         <span>首页</span>
       </div>
-      <div class="icon-cart">
+      <div @click="$router.push('/cart')" class="icon-cart">
+        <span v-if="cartTotal > 0" class="num">{{ cartTotal }}</span>
         <van-icon name="shopping-cart-o" />
         <span>购物车</span>
       </div>
@@ -116,6 +117,7 @@
 import { getProDetail, getProComments } from '@/api/product'
 import defaultImg from '@/assets/default-avatar.png'
 import CountBox from '@/components/CountBox.vue'
+import { addCart } from '@/api/cart'
 export default {
   name: 'ProDetailIndex',
   components: {
@@ -167,7 +169,7 @@ export default {
       this.mode = 'buyNow'
       this.showPannel = true
     },
-    addCart() {
+    async addCart() {
       // 根据登录状态，判断是否需要显示登录确认框
       // 1. 如果未登录 => 显示确认框 返回 true
       // 2. 如果已登录 => 啥也不干   返回 false
@@ -191,7 +193,12 @@ export default {
         }).catch(() => { })
         return true
       }
-    }
+      const { data } = await addCart(this.goodsId, this.addCount, this.detail.skuList[0].goods_sku_id)
+      this.cartTotal = data.cartTotal
+      this.$toast('加入购物车成功')
+      this.showPannel = false
+    },
+
   }
 }
 </script>

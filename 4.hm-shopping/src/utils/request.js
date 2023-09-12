@@ -11,7 +11,7 @@ const instance = axios.create({
 
 // 自定义配置 - 请求/响应 拦截器
 // 添加请求拦截器
-instance.interceptors.response.use(function (config) {
+instance.interceptors.request.use(function (config) {
     // console.log(config);
     // 开启loading，禁止背景点击 (节流处理，防止多次无效触发)
     Toast.loading({
@@ -21,8 +21,14 @@ instance.interceptors.response.use(function (config) {
         duration: 0 // 不会自动消失
     })
 
+    // 只要有token，就在请求时携带，便于请求需要授权的接口
+    const token = store.getters.token
+    if (token) {
+        config.headers['Access-Token'] = token
+        config.headers.platform = 'H5'
+    }
     return config
-}),function(error){
+}), function (error) {
     // 对响应错误做点什么
     return Promise.reject(error)
 }
