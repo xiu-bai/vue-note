@@ -30,7 +30,7 @@
         </div>
 
         <div class="footer-fixed">
-            <div class="all-check">
+            <div @click="toggleAllCheck" class="all-check">
                 <van-checkbox :value="isAllChecked" icon-size="18"></van-checkbox>
                 全选
             </div>
@@ -69,6 +69,9 @@ export default {
         toggleCheck(goodsId) {
             this.$store.commit('cart/toggleCheck', goodsId)
         },
+        toggleAllCheck(){
+            this.$store.commit('cart/toggleAllCheck', !this.isAllChecked)
+        }
     }
 }
 </script>

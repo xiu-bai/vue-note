@@ -17,6 +17,12 @@ export default {
             const goods = state.cartList.find(item => item.goods_id === goodsId)
             goods.isChecked = !goods.isChecked
         },
+        toggleAllCheck(state,flag){
+            // 让所有的小选框，同步设置
+            state.cartList.forEach(item => {
+                item.isChecked = flag
+            })
+        }
     },
     actions: {
         async getCartAction(context) {
