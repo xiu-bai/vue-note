@@ -69,8 +69,16 @@ export default {
         toggleCheck(goodsId) {
             this.$store.commit('cart/toggleCheck', goodsId)
         },
-        toggleAllCheck(){
+        toggleAllCheck() {
             this.$store.commit('cart/toggleAllCheck', !this.isAllChecked)
+        },
+        changeCount(goodsNum, goodsId, goodskuId) {
+            console.log(goodsNum, goodsId, goodskuId);
+            this.$store.dispatch('cart/changeCountAction', {
+                goodsNum,
+                goodsId,
+                goodskuId
+            })
         }
     }
 }

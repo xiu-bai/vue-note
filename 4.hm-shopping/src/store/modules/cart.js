@@ -35,6 +35,10 @@ export default {
             })
             context.commit('setCartList', data.list)
         },
+        async changeCountAction(context,obj){
+            const{goodsNum, goodsId, goodskuId} = obj;
+            await changeCount(goodsId,goodsNum,goodskuId)
+        }
     },
     getters: {
         // 求所有的商品累加总数
