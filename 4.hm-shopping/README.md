@@ -4669,6 +4669,7 @@ data () {
 3 封装调用接口获取数据
 
 ```jsx
+import { getMyOrderList } from '@/api/order'
 methods: {
   async getOrderList () {
     const { data: { list } } = await getMyOrderList(this.active, this.page)
