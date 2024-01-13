@@ -17,11 +17,15 @@ export default {
             const goods = state.cartList.find(item => item.goods_id === goodsId)
             goods.isChecked = !goods.isChecked
         },
-        toggleAllCheck(state,flag){
+        toggleAllCheck(state, flag) {
             // 让所有的小选框，同步设置
             state.cartList.forEach(item => {
                 item.isChecked = flag
             })
+        },
+        changeCount(state, { goodsId, goodsNum }) {
+            const goods = state.cartList.find(item => item.goods_id === goodsId)
+            goods.goods_num = goodsNum
         }
     },
     actions: {
@@ -35,9 +39,20 @@ export default {
             })
             context.commit('setCartList', data.list)
         },
-        async changeCountAction(context,obj){
-            const{goodsNum, goodsId, goodskuId} = obj;
-            await changeCount(goodsId,goodsNum,goodskuId)
+        async changeCountAction(context, obj) {
+            const { goodsNum, goodsId, goodskuId } = obj;
+            // 先修改本地
+            context.commit('changeCount', { goodsNum, goodsId })
+            await changeCount(goodsId, goodsNum, goodskuId);
+        },
+        // 删除购物车数据
+        async delSelect(context){
+            const selCartList = context.getters.selCartList
+            const cartIds = selCartList.map(item => item.id)
+            await delSelect(cartIds)
+            Toast('删除成功');
+            // 重新拉取最新的购物车数据 (重新渲染)
+            context.dispatch('getCartAction')
         }
     },
     getters: {
