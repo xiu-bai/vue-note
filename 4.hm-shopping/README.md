@@ -4128,6 +4128,7 @@ goPay () {
 2 页面中接收参数,   调用接口，获取数据
 
 ```jsx
+import { checkOrder } from '@/api/order'
 data () {
   return {
     order: {},
@@ -4197,7 +4198,7 @@ async getOrderList () {
 
     <div class="pay-cell">
       <span>配送费用：</span>
-      <span v-if="!selectAddress">请先选择配送地址</span>
+      <span v-if="!selectedAddress">请先选择配送地址</span>
       <span v-else class="red">+￥0.00</span>
     </div>
   </div>
