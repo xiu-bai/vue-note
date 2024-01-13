@@ -4014,6 +4014,8 @@ export const getAddressList = () => {
 2 页面中 - 调用获取地址
 
 ```jsx
+import { getAddressList } from '@/api/address'
+
 data () {
   return {
     addressList: []
