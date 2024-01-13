@@ -16,7 +16,15 @@ export default {
         }
     },
     // 提供异步操作
-    actions: {},
+    actions: {
+        logout(context){
+            // 个人信息重置
+            context.commit('setUserInfo',{})
+
+            // 购物车信息重置(跨模块调用 mutation) 'cart/setCartList'
+            context.commit('cart/setCartList', [], { root: true })
+        }
+    },
     // 提供基于state所派生出的一些属性
     getters: {}
 }
