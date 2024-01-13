@@ -72,6 +72,9 @@ export default {
     computed: {
         ...mapState('cart', ['cartList']),
         ...mapGetters('cart', ['cartTotal', 'selCartList', 'selCount', 'selPrice', 'isAllChecked']),
+        isLogin() {
+            return this.$store.getters.token
+        }
     },
     created() {
         // 必须是登录过的用户，才能用户购物车列表
@@ -261,29 +264,32 @@ export default {
     }
 
 }
+
 .empty-cart {
-  padding: 80px 30px;
-  img {
-    width: 140px;
-    height: 92px;
-    display: block;
-    margin: 0 auto;
-  }
-  .tips {
-    text-align: center;
-    color: #666;
-    margin: 30px;
-  }
-  .btn {
-    width: 110px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    background-color: #fa2c20;
-    border-radius: 16px;
-    color: #fff;
-    display: block;
-    margin: 0 auto;
-  }
-}
-</style>
+    padding: 80px 30px;
+
+    img {
+        width: 140px;
+        height: 92px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .tips {
+        text-align: center;
+        color: #666;
+        margin: 30px;
+    }
+
+    .btn {
+        width: 110px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-color: #fa2c20;
+        border-radius: 16px;
+        color: #fff;
+        display: block;
+        margin: 0 auto;
+    }
+}</style>
