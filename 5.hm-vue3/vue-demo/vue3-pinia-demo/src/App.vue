@@ -3,7 +3,9 @@ import Son1Com from '@/components/Son1Com.vue'
 import Son2Com from '@/components/Son2Com.vue'
 import { useCountStore } from '@/store/counter'
 const counterStore = useCountStore()
-console.log(counterStore);
+
+import { useChannelStore } from '@/store/channel'
+const channelStore = useChannelStore()
 </script>
 
 <template>
@@ -15,6 +17,11 @@ console.log(counterStore);
     </h3>
     <Son1Com></Son1Com>
     <Son2Com></Son2Com>
+    <hr>
+    <button @click="channelStore.getList">获取数据</button>
+    <ul>
+      <li v-for="item in channelStore.channelList" :key="item.id">{{ item.name }}</li>
+    </ul>
   </div>
 </template>
 
