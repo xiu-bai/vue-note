@@ -1,10 +1,12 @@
 <script setup>
+import { useCountStore } from '@/store/counter'
+const counterStore = useCountStore()
 </script>
 
 <template>
     <div>
-        我是Son1.vue - 0
-        <button>+</button>
+        我是Son1.vue - {{ counterStore.count }} {{ counterStore.double }}
+        <button @click="counterStore.addCount">+</button>
     </div>
 </template>
 
