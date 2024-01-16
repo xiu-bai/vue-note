@@ -23,4 +23,10 @@ export const useCountStore = defineStore('counter', () => {
         double,
         msg
     }
+}, {
+    // persist: true//开模块持久化
+    persist:{
+        key:'hm-counter',// 修改本地存储的唯一标识
+        paths: ['count'] // 存储的是哪些数据
+    }
 })
