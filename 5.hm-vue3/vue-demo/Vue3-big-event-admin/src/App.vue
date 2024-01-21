@@ -22,6 +22,12 @@ const countStore = useCountStore()
 
 <template>
   <div>
+    <hr />
+    <router-view></router-view>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
     <textDemo />
     我是app
     <button @click="$router.push('./home')">aaaa</button>
