@@ -2,9 +2,10 @@
 import { ref } from 'vue'
 import { Edit, Delete } from '@element-plus/icons-vue'
 import { artGetChannelsService } from '@/api/article'
+import ChannelEdit from './components/ChannelEdit.vue'
 const channelList = ref([])
 const loading = ref(false)
-
+const dialog = ref()
 const getChannelList = async () => {
   loading.value = true
   const res = await artGetChannelsService()
@@ -14,8 +15,11 @@ const getChannelList = async () => {
 }
 getChannelList()
 
+const onAddChannel = () => {
+  dialog.value.open({})
+}
 const onEditChannel = (row) => {
-  console.log(row)
+  dialog.value.open(row)
 }
 const onDelChannel = (row) => {
   console.log(row)
@@ -24,7 +28,7 @@ const onDelChannel = (row) => {
 <template>
   <page-container title="文章分类">
     <template #extra>
-      <el-button @click="">添加分类</el-button>
+      <el-button @click="onAddChannel">添加分类</el-button>
     </template>
     <el-table v-loading="loading" :data="channelList" style="width: 100%">
       <el-table-column label="序号" width="100" type="index"> </el-table-column>
@@ -52,6 +56,7 @@ const onDelChannel = (row) => {
         <el-empty description="没有数据" />
       </template>
     </el-table>
+    <ChannelEdit ref="dialog" />
   </page-container>
 </template>
 
