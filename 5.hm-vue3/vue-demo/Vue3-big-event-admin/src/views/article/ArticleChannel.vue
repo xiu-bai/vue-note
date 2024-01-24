@@ -10,7 +10,6 @@ const getChannelList = async () => {
   loading.value = true
   const res = await artGetChannelsService()
   channelList.value = res.data.data
-  console.log(channelList.value)
   loading.value = false
 }
 getChannelList()
@@ -56,7 +55,7 @@ const onDelChannel = (row) => {
         <el-empty description="没有数据" />
       </template>
     </el-table>
-    <ChannelEdit ref="dialog" />
+    <ChannelEdit ref="dialog" @success="getChannelList()" />
   </page-container>
 </template>
 
