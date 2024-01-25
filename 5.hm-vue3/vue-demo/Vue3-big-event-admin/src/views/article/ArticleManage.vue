@@ -2,23 +2,11 @@
 import { Delete, Edit } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import ChannelSelect from './components/ChannelSelect.vue'
-// 假数据
-const articleList = ref([
-  {
-    id: 5961,
-    title: '新的文章啊',
-    pub_date: '2022-07-10 14:53:52.604',
-    state: '已发布',
-    cate_name: '体育'
-  },
-  {
-    id: 5962,
-    title: '新的文章啊',
-    pub_date: '2022-07-10 14:54:30.904',
-    state: null,
-    cate_name: '体育'
-  }
-])
+import { artGetListService } from '@/api/article.js'
+import { formatTime } from '@/utils/format.js'
+const articleList = ref([]) //列表
+const total = ref(0) //总数
+
 // 定义请求参数对象
 const params = ref({
   pagenum: 1,
@@ -26,9 +14,30 @@ const params = ref({
   cate_id: '',
   state: ''
 })
+
+const getArticleList = async () => {
+  const res = await artGetListService(params.value)
+  console.log(res, '00')
+  articleList.value = res.data.data
+  total.value = res.data.total
+}
+getArticleList()
+
+// 分页
+const onSizeChange = (size) => {
+  params.value.pagenum = 1
+  params.value.pagesize = size
+  getArticleList()
+}
+const onCurrentChange = (page) => {
+  params.value.pagenum = page
+  getArticleList()
+}
+// 编辑
 const onEditArticle = (row) => {
   console.log(row)
 }
+// 删除
 const onDeleteArticle = (row) => {
   console.log(row)
 }
@@ -69,7 +78,11 @@ const onDeleteArticle = (row) => {
         </template>
       </el-table-column>
       <el-table-column label="分类" prop="cate_name"></el-table-column>
-      <el-table-column label="发表时间" prop="pub_date"> </el-table-column>
+      <el-table-column label="发表时 间" prop="pub_date">
+        <template #default="{ row }">
+          {{ formatTime(row.pub_date) }}
+        </template>
+      </el-table-column>
       <el-table-column label="状态" prop="state"></el-table-column>
       <el-table-column label="操作" width="100">
         <template #default="{ row }">
@@ -93,6 +106,18 @@ const onDeleteArticle = (row) => {
         <el-empty description="没有数据" />
       </template>
     </el-table>
+    <!-- 分页 -->
+    <el-pagination
+      v-model:current-page="params.pagenum"
+      v-model:page-size="params.pagesize"
+      :page-sizes="[2, 3, 4, 5, 10]"
+      layout="jumper, total, sizes, prev, pager, next"
+      background
+      :total="total"
+      @size-change="onSizeChange"
+      @current-change="onCurrentChange"
+      style="margin-top: 20px; justify-content: flex-end"
+    />
   </page-container>
 </template>
 
