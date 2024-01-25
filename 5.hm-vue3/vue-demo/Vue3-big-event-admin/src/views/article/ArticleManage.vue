@@ -6,7 +6,7 @@ import { artGetListService } from '@/api/article.js'
 import { formatTime } from '@/utils/format.js'
 const articleList = ref([]) //列表
 const total = ref(0) //总数
-
+const loading = ref(false)
 // 定义请求参数对象
 const params = ref({
   pagenum: 1,
@@ -15,11 +15,14 @@ const params = ref({
   state: ''
 })
 
+// 获取列表
 const getArticleList = async () => {
+  loading.value = true
   const res = await artGetListService(params.value)
   console.log(res, '00')
   articleList.value = res.data.data
   total.value = res.data.total
+  loading.value = false
 }
 getArticleList()
 
@@ -40,6 +43,19 @@ const onEditArticle = (row) => {
 // 删除
 const onDeleteArticle = (row) => {
   console.log(row)
+}
+
+// 搜索
+const onSearch = () => {
+  params.value.pagenum = 1
+  getArticleList()
+}
+// 重置
+const onReset = () => {
+  params.value.pagenum = 1
+  params.value.cate_id = ''
+  params.value.state = ''
+  getArticleList()
 }
 </script>
 <template>
@@ -65,13 +81,13 @@ const onDeleteArticle = (row) => {
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">搜索</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="onSearch" type="primary">搜索</el-button>
+        <el-button @click="onReset">重置</el-button>
       </el-form-item>
     </el-form>
 
     <!-- 表格 -->
-    <el-table :data="articleList" style="width: 100%">
+    <el-table v-loading="loading" :data="articleList" style="width: 100%">
       <el-table-column label="文章标题" width="400">
         <template #default="{ row }">
           <el-link type="primary" :underline="false">{{ row.title }}</el-link>
