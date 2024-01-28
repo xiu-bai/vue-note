@@ -2,11 +2,13 @@
 import { Delete, Edit } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import ChannelSelect from './components/ChannelSelect.vue'
+import ArticleEdit from './components/ArticleEdit.vue'
 import { artGetListService } from '@/api/article.js'
 import { formatTime } from '@/utils/format.js'
 const articleList = ref([]) //列表
 const total = ref(0) //总数
 const loading = ref(false)
+const articleEditRef = ref()
 // 定义请求参数对象
 const params = ref({
   pagenum: 1,
@@ -36,9 +38,13 @@ const onCurrentChange = (page) => {
   params.value.pagenum = page
   getArticleList()
 }
+// 编辑新增逻辑
+const onAddArticle = () => {
+  articleEditRef.value.open({})
+}
 // 编辑
 const onEditArticle = (row) => {
-  console.log(row)
+  articleEditRef.value.open(row)
 }
 // 删除
 const onDeleteArticle = (row) => {
@@ -61,7 +67,7 @@ const onReset = () => {
 <template>
   <page-container title="文章管理">
     <template #extra>
-      <el-button @click="">添加文章</el-button>
+      <el-button @click="onAddArticle">添加文章</el-button>
     </template>
 
     <!-- 表单 -->
@@ -134,6 +140,8 @@ const onReset = () => {
       @current-change="onCurrentChange"
       style="margin-top: 20px; justify-content: flex-end"
     />
+    <!-- 弹窗 -->
+    <article-edit ref="articleEditRef"></article-edit>
   </page-container>
 </template>
 
