@@ -22,3 +22,6 @@ export const artGetListService = (params) =>
   request.get('/my/article/list', {
     params
   })
+// 文章：添加文章
+// 注意：data需要是一个fromData格式的对象
+export const artPublishService = (data) => request.post('/my/article/add', data)

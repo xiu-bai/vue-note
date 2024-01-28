@@ -4,6 +4,7 @@ import ChannelSelect from './ChannelSelect.vue'
 import { Plus } from '@element-plus/icons-vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { artPublishService } from '@/api/article.js'
 const visibleDrawer = ref(false)
 const defaultForm = {
   title: '',
@@ -14,6 +15,13 @@ const defaultForm = {
 }
 const formModel = ref({ ...defaultForm })
 
+// 图片
+const imgUrl = ref('')
+const onUploadFile = (uploadFile) => {
+  imgUrl.value = URL.createObjectURL(uploadFile.raw)
+  formModel.value.cover_img = uploadFile.raw
+}
+const editorRef = ref()
 // 打开弹窗
 const open = async (row) => {
   visibleDrawer.value = true
@@ -22,17 +30,34 @@ const open = async (row) => {
   } else {
     console.log('添加功能')
     formModel.value = { ...defaultForm }
+    imgUrl.value = ''
+    editorRef.value.setHTML('')
   }
 }
-
 defineExpose({
   open
 })
-const imgUrl = ref('')
 
-const onUploadFile = (uploadFile) => {
-  imgUrl.value = URL.createObjectURL(uploadFile.raw)
-  formModel.value.cover_img = uploadFile.raw
+const emit = defineEmits(['success'])
+// 提交
+const onPublish = async (state) => {
+  // 将已发布还是草稿状态，存入 state
+  formModel.value.state = state
+  // 将对象 转换 formData 数据
+  const fd = new FormData()
+  for (let key in formModel.value) {
+    fd.append(key, formModel.value[key])
+  }
+  console.log(fd, 'FD')
+  if (formModel.value.id) {
+    console.log('编辑操作')
+  } else {
+    // 添加请求
+    await artPublishService(fd)
+    ElMessage.success('添加成功')
+    visibleDrawer.value = false
+    emit('success', 'add')
+  }
 }
 </script>
 
@@ -69,6 +94,7 @@ const onUploadFile = (uploadFile) => {
       <el-form-item label="文章内容" prop="content">
         <div class="editor">
           <quill-editor
+            ref="editorRef"
             theme="snow"
             v-model:content="formModel.content"
             contentType="html"
@@ -77,8 +103,8 @@ const onUploadFile = (uploadFile) => {
         </div>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">发布</el-button>
-        <el-button type="info">草稿</el-button>
+        <el-button @click="onPublish('已发布')" type="primary">发布</el-button>
+        <el-button @click="onPublish('草稿')" type="info">草稿</el-button>
       </el-form-item>
     </el-form>
   </el-drawer>
