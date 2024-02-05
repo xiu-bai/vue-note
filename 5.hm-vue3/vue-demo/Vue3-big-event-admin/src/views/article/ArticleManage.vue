@@ -3,7 +3,7 @@ import { Delete, Edit } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import ChannelSelect from './components/ChannelSelect.vue'
 import ArticleEdit from './components/ArticleEdit.vue'
-import { artGetListService } from '@/api/article.js'
+import { artGetListService, artDelService } from '@/api/article.js'
 import { formatTime } from '@/utils/format.js'
 const articleList = ref([]) //列表
 const total = ref(0) //总数
@@ -47,8 +47,15 @@ const onEditArticle = (row) => {
   articleEditRef.value.open(row)
 }
 // 删除
-const onDeleteArticle = (row) => {
-  console.log(row)
+const onDeleteArticle = async (row) => {
+  await ElMessageBox.confirm('你确认删除该文章信息吗？', '温馨提示', {
+    type: 'warning',
+    confirmButtonText: '确认',
+    cancelButtonText: '取消'
+  })
+  await artDelService(row.id)
+  ElMessage({ type: 'success', message: '删除成功' })
+  getArticleList()
 }
 
 // 搜索
@@ -73,6 +80,7 @@ const onSuccess = (type) => {
     params.value.pagenum = lastPage
     getArticleList()
   } else {
+    getArticleList()
   }
 }
 </script>

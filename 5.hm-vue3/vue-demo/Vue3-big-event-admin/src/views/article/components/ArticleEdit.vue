@@ -4,7 +4,13 @@ import ChannelSelect from './ChannelSelect.vue'
 import { Plus } from '@element-plus/icons-vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import { artPublishService } from '@/api/article.js'
+import {
+  artPublishService,
+  artGetDetailService,
+  artEditService
+} from '@/api/article.js'
+import { baseURL } from '@/utils/request'
+import axios from 'axios'
 const visibleDrawer = ref(false)
 const defaultForm = {
   title: '',
@@ -27,6 +33,16 @@ const open = async (row) => {
   visibleDrawer.value = true
   if (row.id) {
     console.log('编辑回显')
+    const res = await artGetDetailService(row.id)
+    formModel.value = res.data.data
+    imgUrl.value = baseURL + formModel.value.cover_img
+    // 注意：提交给后台，需要的数据格式，是file对象格式
+    // 需要将网络图片地址 => 转换成 file对象，存储起来, 将来便于提交
+    const file = await imageUrlToFileObject(
+      imgUrl.value,
+      formModel.value.cover_img
+    )
+    formModel.value.cover_img = file
   } else {
     console.log('添加功能')
     formModel.value = { ...defaultForm }
@@ -51,12 +67,39 @@ const onPublish = async (state) => {
   console.log(fd, 'FD')
   if (formModel.value.id) {
     console.log('编辑操作')
+    await artEditService(fd)
+    ElMessage.success('编辑成功')
+    visibleDrawer.value = false
+    emit('success', 'edit')
   } else {
     // 添加请求
     await artPublishService(fd)
     ElMessage.success('添加成功')
     visibleDrawer.value = false
     emit('success', 'add')
+  }
+}
+
+// 将网络图片地址转换为 File 对象的函数
+async function imageUrlToFileObject(imageUrl, filename) {
+  try {
+    // 使用 Axios 下载图片数据
+    const response = await axios.get(imageUrl, { responseType: 'arraybuffer' })
+
+    // 将下载的数据转换成 Blob 对象
+    const blob = new Blob([response.data], {
+      type: response.headers['content-type']
+    })
+
+    // 创建 File 对象
+    const file = new File([blob], filename, {
+      type: response.headers['content-type']
+    })
+
+    return file
+  } catch (error) {
+    console.error('Error converting image URL to File object:', error)
+    return null
   }
 }
 </script>
